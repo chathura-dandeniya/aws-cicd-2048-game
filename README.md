@@ -163,5 +163,3 @@ Running cost is roughly one Fargate task (0.25 vCPU / 0.5 GB) plus small ECR/S3 
 Targeting Cloud / DevOps / SRE roles in Australia.
 
 [GitHub](https://github.com/chathura-dandeniya) · [LinkedIn](https://www.linkedin.com/in/YOUR-HANDLE)
-
-Original 2048 game by Gabriele Cirulli (MIT). Lab inspiration: Tech With Lucy.
