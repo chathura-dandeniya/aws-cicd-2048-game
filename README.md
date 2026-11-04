@@ -162,4 +162,4 @@ Running cost is roughly one Fargate task (0.25 vCPU / 0.5 GB) plus small ECR/S3 
 **Chathura Dandeniya** — Master of IT (Networking & Cloud Technologies), Deakin University.
 Targeting Cloud / DevOps / SRE roles in Australia.
 
-[GitHub](https://github.com/chathura-dandeniya) · [LinkedIn](https://www.linkedin.com/in/YOUR-HANDLE)
+[GitHub](https://github.com/chathura-dandeniya) · [LinkedIn](https://www.linkedin.com/in/chathura-dandeniya/)
