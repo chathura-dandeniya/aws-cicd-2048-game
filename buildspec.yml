@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Setting variables...
+      - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+      - ECR_REGISTRY=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - IMAGE_REPO=$ECR_REGISTRY/2048-game-repo
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t $IMAGE_REPO:$IMAGE_TAG -t $IMAGE_REPO:latest .
+  post_build:
+    commands:
+      - echo Pushing the Docker image to Amazon ECR...
+      - docker push $IMAGE_REPO:$IMAGE_TAG
+      - docker push $IMAGE_REPO:latest
+      - echo Creating imagedefinitions.json for ECS deployment...
+      - printf '[{"name":"2048-container","imageUri":"%s"}]' $IMAGE_REPO:$IMAGE_TAG > imagedefinitions.json
+      - cat imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
